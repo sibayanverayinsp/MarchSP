@@ -1,0 +1,9 @@
+8:55:04|::1|auth/login|anon|admin,admin|
+8:55:05|::1|admin/get_users|admin|none|
+8:55:05|::1|admin/get_users|admin|none|
+8:55:10|::1|admin/get_users|admin|none|
+8:55:10|::1|admin/get_users|admin|none|
+8:55:22|::1|auth/login|anon|team,team|
+8:55:23|::1|team/get_files|team|none|
+11:41:40|192.168.24.54|auth/login|anon|test,test|No data
+11:41:40|192.168.24.54|auth/login|anon|test,test|No data

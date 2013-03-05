@@ -1,0 +1,8 @@
+$(document).delegate("#logoutButton","click",function(){
+	$.post('ajax/?logout', {},
+		function( data ) {
+			showDivs('hide','logout');
+			$(".winNail").remove();
+		}
+	);
+});

@@ -1,0 +1,13 @@
+<?php
+	defined('AUTH') or die;
+	defined('API') or die;
+	$input[] = $_POST['problemNo'];
+	$input[] = $_SESSION['username'];
+	$check = true;
+	if(API::checkEmpty($input)){
+		$error = true;
+		$error_message = "Request is missing required parameter(s)";
+	}else $input = API::sanitize($link,$input);
+	
+	$query = "SELECT * FROM programs WHERE problemNo='$input[0]' AND sender='$input[1]' AND (status='PENDING' OR status='CHECKING');";
+?>

@@ -1,0 +1,37 @@
+<?php	DEFINE('AUTH', 1);
+session_start();
+foreach(glob("bin/*.php") as $file) include $file;
+	
+if(isset($_GET['start'])){
+	$modules[] = array("name" => "ads");
+	if(!isset($_SESSION['role']))
+		$modules[0] = array("name" => "login");
+	else if($_SESSION['role']=='Team')
+		$modules[] = array("name" => "file_sender");
+	else if($_SESSION['role']=='Judge')
+		$modules[] = array("name" => "file_stash");
+	else if($_SESSION['role']=='Admin')
+		$modules[] = array("name" => "account_manager");
+	else if($_SESSION['role']=='eliminator')
+		$modules[] = array("name" => "eliminator");
+	RModuleMgr::renderModules($modules);
+	exit;
+}?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo RConfig::app_name;?></title>
+		<meta http-equiv="Accept-Encoding" content="gzip, deflate"/>
+		<meta name="KEYWORDS" content="CodeWars, Code Wars, UPLB COSS, Computer Science Week, UPLB Computer Science Society, Programming Contest Program" />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<?php RModuleMgr::renderStyles();?>
+		<script type="text/javascript" src="static/js/top.js"></script>
+	</head>
+	<body ondragstart='return false' onselectstart='return false'>
+        <div id="center" class="css3-windows-7"></div>
+        <div id="footer">	<?php include "modules/footer/tmpl/index.php"; ?>	</div>
+		<?php RModuleMgr::renderScripts();?>
+	</body>
+</html>

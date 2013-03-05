@@ -1,0 +1,138 @@
+1:56:16|::1|auth/login|anon|judge,judge|
+1:59:43|::1|auth/login|anon|team,team|
+1:59:44|::1|team/get_files|team|none|
+2:00:00|::1|team/send_file|team|3,UPLOAD,c|
+2:00:15|::1|auth/login|anon|judge,judge|
+2:00:33|::1|judge/is_pending|judge|24,c|
+2:00:42|::1|judge/eval_file|judge|none|No data
+2:00:53|::1|auth/login|anon|admin,admin|
+2:00:53|::1|admin/get_users|admin|none|
+2:00:53|::1|admin/get_users|admin|none|
+2:01:07|::1|auth/login|anon|team,team|
+2:01:08|::1|team/get_files|team|none|
+6:31:48|::1|auth/login|anon|judge,judge|
+6:32:53|::1|auth/login|anon|team,team|
+6:32:54|::1|team/get_files|team|none|
+6:42:38|::1|auth/login|anon|team,team|
+6:42:39|::1|team/get_files|team|none|
+6:43:01|::1|team/send_file|team|6,UPLOAD,c|
+6:43:04|::1|team/get_files|team|none|
+6:43:17|::1|auth/login|anon|team,team|
+6:43:18|::1|team/get_files|team|none|
+6:43:47|::1|auth/login|anon|judge,judge|
+6:44:02|::1|judge/is_pending|judge|25,c|
+6:52:09|::1|judge/checking|judge|none|
+6:59:35|::1|judge/checking|judge|none|
+6:59:47|::1|judge/checking|judge|none|
+7:00:18|::1|judge/checking|judge|none|
+7:00:31|::1|judge/checking|judge|none|
+7:01:18|::1|judge/checking|judge|none|
+7:01:25|::1|judge/checking|judge|none|
+7:01:47|::1|auth/login|anon|team,team|
+7:01:48|::1|team/get_files|team|none|
+7:02:06|::1|judge/eval_file|judge|none|No data
+7:02:53|::1|team/get_files|team|none|
+7:03:24|::1|judge/checking|judge|none|No data
+7:14:40|::1|auth/login|anon|team,team|
+7:14:40|::1|team/get_files|team|none|
+7:18:07|::1|auth/login|anon|team,team|
+7:18:07|::1|team/get_files|team|none|
+7:20:02|::1|team/get_files|team|none|
+7:21:11|::1|team/get_files|team|none|
+7:21:40|::1|team/send_file|team|3,UPLOAD,c|
+7:22:19|::1|auth/login|anon|judge,judge|
+7:22:20|::1|judge/checking|judge|none|No data
+7:22:26|::1|judge/is_pending|judge|26,c|
+7:22:42|::1|auth/login|anon|judge,judge|
+7:22:42|::1|judge/checking|judge|none|
+7:23:02|::1|judge/eval_file|judge|none|No data
+7:25:56|::1|team/get_files|team|none|
+7:26:03|::1|team/send_file|team|4,UPLOAD,c|
+7:26:23|::1|auth/login|anon|judge,judge|
+7:26:23|::1|judge/checking|judge|none|No data
+7:26:30|::1|judge/is_pending|judge|27,c|
+7:26:44|::1|judge/eval_file|judge|none|No data
+7:26:56|::1|team/get_files|team|none|
+7:27:03|::1|auth/login|anon|admin,admin|
+7:27:04|::1|admin/get_users|admin|none|
+7:27:04|::1|admin/get_users|admin|none|
+7:37:30|::1|admin/get_users|admin|none|
+7:37:30|::1|admin/get_users|admin|none|
+7:37:36|::1|auth/login|anon|team,team|
+7:37:37|::1|team/get_files|team|none|
+7:39:46|::1|team/get_files|team|none|
+7:40:28|::1|team/get_files|team|none|
+7:42:52|::1|team/get_files|team|none|
+7:43:40|::1|team/get_files|team|none|
+7:45:32|::1|team/get_files|team|none|
+10:21:51|::1|team/get_files|team|none|No data
+10:21:58|::1|team/check|team|1,UPLOAD|No data
+10:21:58|::1|team/send_file|team|1,UPLOAD,c|
+10:22:10|::1|team/check|team|1,UPLOAD|
+10:22:17|::1|team/check|team|1,UPLOAD|
+10:22:50|::1|team/get_files|team|none|
+10:22:59|::1|team/check|team|1,UPLOAD|
+10:23:24|::1|team/get_files|team|none|
+10:23:34|::1|team/check|team|1,UPLOAD|
+10:24:30|::1|team/get_files|team|none|
+10:24:36|::1|team/check|team|1,UPLOAD|
+10:24:52|::1|auth/login|anon|judge,judge|
+10:24:53|::1|judge/checking|judge|none|No data
+10:24:59|::1|judge/is_pending|judge|28,c|
+10:25:08|::1|team/check|team|1,UPLOAD|
+10:25:17|::1|judge/checking|judge|none|
+10:25:41|::1|judge/eval_file|judge|none|No data
+10:25:50|::1|team/check|team|1,UPLOAD|No data
+10:25:50|::1|team/send_file|team|1,UPLOAD,c|
+10:26:01|::1|judge/is_pending|judge|29,c|
+10:26:37|::1|judge/eval_file|judge|none|No data
+10:26:49|::1|team/check|team|2,UPLOAD|No data
+10:26:49|::1|team/send_file|team|2,UPLOAD,c|
+10:26:55|::1|team/check|team|2,UPLOAD|
+10:27:03|::1|team/check|team|3,UPLOAD|No data
+10:27:03|::1|team/send_file|team|3,UPLOAD,c|
+10:27:16|::1|team/check|team|3,UPLOAD|
+10:30:20|::1|team/get_files|team|none|
+10:30:26|::1|team/check|team|2,UPLOAD|
+10:30:41|::1|team/check|team|4,UPLOAD|No data
+10:30:41|::1|team/send_file|team|4,UPLOAD,c|
+10:30:49|::1|team/check|team|5,UPLOAD|No data
+10:30:49|::1|team/send_file|team|5,UPLOAD,c|
+10:31:03|::1|team/check|team|7,UPLOAD|No data
+10:31:03|::1|team/send_file|team|7,UPLOAD,c|
+10:31:57|::1|team/get_files|team|none|
+10:32:09|::1|team/check|team|6,UPLOAD|No data
+10:32:09|::1|team/send_file|team|6,UPLOAD,c|
+10:32:18|::1|team/check|team|7,UPLOAD|
+10:33:40|::1|team/get_files|team|none|
+10:33:51|::1|team/check|team|8,UPLOAD|No data
+10:33:51|::1|team/send_file|team|8,UPLOAD,c|
+10:33:58|::1|team/check|team|9,UPLOAD|No data
+10:33:58|::1|team/send_file|team|9,UPLOAD,c|
+10:34:06|::1|team/check|team|9,UPLOAD|
+10:34:11|::1|team/check|team|10,UPLOAD|No data
+10:34:11|::1|team/send_file|team|10,UPLOAD,c|
+10:34:27|::1|auth/login|anon|judge,judge|
+10:34:28|::1|judge/checking|judge|none|No data
+10:34:47|::1|judge/checking|judge|none|No data
+10:34:57|::1|judge/is_pending|judge|30,c|
+10:34:58|::1|judge/is_pending|judge|30,c|No data
+10:35:08|::1|judge/is_pending|judge|31,c|
+10:35:26|::1|judge/eval_file|judge|none|No data
+10:35:33|::1|judge/eval_file|judge|none|No data
+11:10:28|::1|judge/checking|judge|none|No data
+12:27:46|::1|judge/checking|judge|none|No data
+16:07:51|::1|auth/login|anon|admin,admin|
+16:07:52|::1|admin/get_users|admin|none|
+16:07:52|::1|admin/get_users|admin|none|
+16:08:44|::1|admin/get_users|admin|none|
+16:08:44|::1|admin/get_users|admin|none|
+16:09:20|::1|admin/get_users|admin|none|
+16:09:20|::1|admin/get_users|admin|none|
+16:09:51|::1|auth/login|anon|team,team|
+16:09:52|::1|team/get_files|team|none|No data
+16:13:44|::1|auth/login|anon|admin,admin|
+16:13:45|::1|admin/get_users|admin|none|
+16:13:45|::1|admin/get_users|admin|none|
+16:17:01|::1|admin/get_users|admin|none|
+16:17:01|::1|admin/get_users|admin|none|

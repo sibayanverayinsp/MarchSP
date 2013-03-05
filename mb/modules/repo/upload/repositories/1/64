@@ -1,0 +1,65 @@
+<div id="file_sender_div" class="window">
+    <h2 class="window_title"><button></button>File Sender</h2>
+    <div class="window_content">
+		<table>
+			<tr>
+				<th><div id="team_image"><img src="static/images/group.png" width="100px"/></div></th>
+				<td rowspan="3" id="lb">
+					<table id="files_table">
+						<tr>
+							<th>Problem</th>
+							<th>Status</th>
+						</tr>
+						<?php
+						$files = API::execute('team/get_files',array());
+						foreach($files['data'] as $f):?>
+						<tr>
+							<th><?php echo $f['problemNo'];?></th>
+							<th id='sender_row_<?php echo $f['fileId'];?>'><span class="<?php echo (($f['status']=='Correct')?'':(($f['status']=='PENDING' || $f['status']=='CHECKING')?'p':'e'))?>msg"><?php echo $f['status'];?></span></th>
+						</tr>
+						<?php endforeach;?>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<th><?php echo $_SESSION['username']?></th>
+			</tr>
+			<tr>
+				<td width="30%">
+					<form action="<?php echo RConfig::ajax_url;?>file_receive"  id="uploadForm" method="post" enctype="multipart/form-data" target="upload_target" onsubmit="return startUpload();" >
+						<table id="team_left">
+							<tr>
+								<td>
+									<select name="problemNo" id="problems">
+										<?php
+											for($i=1;$i<= RConfig::problemCount ;$i++){
+											$skip = false;
+											foreach($files['data'] as $f)
+												if($f['problemNo']==$i && $f['status']=='Correct')
+													$skip = true;
+											if($skip) continue;?>
+										<option value="<?php echo $i;?>" id="problem_option_<?php echo $i;?>">Problem <?php echo $i;?></option>
+										<?php } ?>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input name="myfile" type="file" id="file" onchange="changeButtonValue(this);"/>
+									<input type="button" onclick="$('#file').click();" value="SELECT FILE" id="sudo-file"/>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="submit" name="submitBtn" value="UPLOAD" id="upload"/></td>
+							</tr>
+							<tr>
+								<td><p id="result"></p></td>
+							</tr>
+						</table>
+					</form>
+				</td>
+			</tr>
+		</table>
+    </div>
+</div>
+<iframe id="upload_target" name="upload_target" style="width:0;height:0;border:0;"></iframe>

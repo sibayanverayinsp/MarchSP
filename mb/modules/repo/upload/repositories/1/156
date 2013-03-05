@@ -1,0 +1,16 @@
+/*---------------------------------------------------------------+
+	Author: Raven John M. Lagrimas, 2010-43168, BSCS, CMSC21 ST-5L
+	Program Description: Monster Game
+	Bugs:
+		++entering a character if asking for integer input. results
+		to infinite loop of main menu.
+	Reminder:
+		Don't enter a monster name greater than 19 characters.
++----------------------------------------------------------------*/
+
+#include "lagrimas_exer6_functions.h"	//header file containing function and structs
+
+main(){
+   player players[2];	//creates 2 player, user and computer
+   printMenu(players);	//starts the program
+}

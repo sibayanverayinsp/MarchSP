@@ -1,0 +1,137 @@
+function checkChecking(){
+	$.post('ajax/?checking',{},
+		function(data, textStatus, jqXHR){
+			if(jqXHR.status==200){
+				data = JSON.parse(data);
+				data = data.data[0];
+				console.log(data);
+				$('#stash_id').val(data.fileId);
+				$('#stash_ext').val(data.ext);
+				$('.download_button').attr('disabled','disabled');
+				$('#submitButton').removeAttr('disabled');
+				setCode(data.fileId);
+				if(confirm('You left something to evaluate. Download the file again?'))
+					window.location = 'ajax/?download&id=' + $('#stash_id').val() + '&ext=' + $('#stash_ext').val();
+			}else{
+				console.log(jqXHR);
+				alert('Something went wrong :(');
+			}
+		}
+	)
+}
+function evaluateFile(){
+	if(confirm("Are you sure you want to judge this solution as "+$('#file_eval').val()+"?")){
+		$.post('ajax/?eval_file',{fileId: $('#stash_id').val(), eval: $('#file_eval').val()},
+			function(data, textStatus, jqXHR){
+				if(jqXHR.status==200){
+					$('#code_area').html('');
+					$('.download_button').removeAttr('disabled');
+					$('#submitButton').attr('disabled','disabled');
+					alert('Solution successfully evaluated.');
+				}else{
+					console.log(jqXHR);
+					alert('Something went wrong :(');
+				}
+			}
+		);
+	}
+}
+function getFile(f){
+
+	$('.download_button').attr('disabled','disabled');
+	$('#submitButton').removeAttr('disabled');
+	$.post( $(f).attr('action'), $(f).serialize(),
+		function( data, textStatus, jqXHR ) {
+			if(jqXHR.status==200){
+				if(data=="1"){
+					window.location = 'ajax/?download&id=' + $('#stash_id').val() + '&ext=' + $('#stash_ext').val();
+				}
+				else alert('Someone else is already checking this solution.');
+				$('#stash_row_'+$('#stash_id').val()).fadeOut('slow');
+			}else{
+				console.log(jqXHR);
+				alert('Something went wrong :(');
+			}
+		}
+	);
+	return false;
+}
+function stashHover(){
+	$('.stash_row').click(
+		function(){
+			$('.activeRow').removeClass('activeRow');
+			$(this).addClass('activeRow');
+			var id = ($(this)[0].id).substr(10,($(this)[0].id).length);
+			setCode(id);
+		}
+	);
+}
+function setCode(id){
+	$.post('ajax/?get_code', {fileId : id},
+		function( data, textStatus, jqXHR ) {
+			if(jqXHR.status==200){
+				$('#code_area').html(data);
+			}else{
+				console.log(jqXHR);
+				alert('Something went wrong :(');
+			}
+		}
+	);
+}
+function bago(luma,bago){
+	if(luma.length==0) return bago;
+	_q = new Array;
+	for(var i=0;i<bago.length;i++){
+		for(var j=0;j<luma.length;j++)
+			if(JSON.stringify(bago[i]) == JSON.stringify(luma[j]))
+				break;
+		if(j==luma.length) _q.push(bago[i]);
+	}
+	return _q;
+}
+function lana(luma,bago){
+	_q = new Array;
+	for(var j=0;j<luma.length;j++){
+		for(var i=0;i<bago.length;i++)
+			if(JSON.stringify(bago[i]) == JSON.stringify(luma[j]))
+				break;
+		if(i==bago.length) _q.push(luma[j].fileId);
+	}
+	return _q;
+}
+function poll(models){
+	if($("#stash_table") == undefined) return;
+	var models = models;
+	$.post('ajax/?get_stash', {},
+		function(data, textStatus, jqXHR){
+			if(jqXHR.status==200){
+				if(data=="" || data == undefined) return;
+				var json = JSON.parse(data);
+				var a = bago(models.data,json.data);
+				var maychinecheckan = $('#submitButton').attr('disabled')=='disabled'?false:true;
+				if(a.toString()!=""){
+					for(b in a)
+						$("#stash_table").append("
+						<tr id='stash_row_"+ a[b].fileId +"' class='stash_row'>
+							<td>"+ a[b].fileId +"</td>
+							<td>"+ a[b].sender +"</td>
+							<td>Problem "+ a[b].problemNo +"</td>
+							<td>"+ a[b].version +"</td>
+							<td><input type='submit' class='download_button' value='DOWNLOAD AND CHECK' onclick=\"$('#stash_id').val('"+ a[b].fileId +"'); $('#stash_ext').val('"+ a[b].ext +"');\" "+((maychinecheckan)?"disabled='disabled'":"")+"></td>
+						</tr>
+						");
+					stashHover();
+				}
+				var a = lana(models.data,json.data);
+				if(a.toString()!="")
+					for(b in a)
+						$('#stash_row_'+a[b]).fadeOut('slow');
+				models = json;
+				setTimeout(function(){ poll(models) },5000);
+			}else{
+				console.log(jqXHR);
+				return;
+			}
+		}
+	);
+};

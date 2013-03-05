@@ -1,0 +1,309 @@
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
+--
+-- Host: localhost    Database: codewars
+-- ------------------------------------------------------
+-- Server version	5.5.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `eliminators`
+--
+
+DROP TABLE IF EXISTS `eliminators`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `eliminators` (
+  `username` varchar(32) NOT NULL,
+  `contest` enum('Interlab','Intraschool') DEFAULT NULL,
+  `startTime` datetime DEFAULT NULL,
+  `endTime` datetime DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eliminators`
+--
+
+LOCK TABLES `eliminators` WRITE;
+/*!40000 ALTER TABLE `eliminators` DISABLE KEYS */;
+INSERT INTO `eliminators` VALUES ('CaTEAMpo','Interlab','2013-01-11 13:47:06','2013-01-11 13:55:07',19),('hanc','Intraschool','2013-01-09 10:02:50','2013-01-09 10:06:02',16),('jd','Intraschool','2013-01-11 13:57:38','2013-01-11 14:02:30',17),('jdpayat','Interlab','2013-01-11 14:07:24','2013-01-11 14:10:18',24),('koudo;warusu','Intraschool','2013-01-11 09:59:46','2013-01-11 10:10:39',18),('qwerty','Intraschool','2013-01-09 13:37:13','2013-01-09 13:46:05',16),('rainiel','Intraschool','2013-01-10 07:44:47','2013-01-10 07:47:24',16),('roi','Interlab','2013-01-09 13:25:51','2013-01-09 13:30:43',17),('S-5L','Interlab','2013-01-11 13:45:09','2013-01-11 13:51:12',16),('true love comes','Intraschool','2013-01-11 13:38:50','2013-01-11 13:53:05',14);
+/*!40000 ALTER TABLE `eliminators` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notifs`
+--
+
+DROP TABLE IF EXISTS `notifs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifs` (
+  `fileId` int(11) DEFAULT NULL,
+  `team` varchar(32) NOT NULL,
+  `status` varchar(512) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notifs`
+--
+
+LOCK TABLES `notifs` WRITE;
+/*!40000 ALTER TABLE `notifs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notifs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `programs`
+--
+
+DROP TABLE IF EXISTS `programs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programs` (
+  `fileId` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` varchar(32) NOT NULL,
+  `checker` varchar(32) NOT NULL,
+  `submissionTime` datetime DEFAULT NULL,
+  `problemNo` int(11) NOT NULL,
+  `version` int(11) NOT NULL DEFAULT '1',
+  `ext` enum('c','java','cpp') DEFAULT NULL,
+  `status` varchar(512) NOT NULL,
+  PRIMARY KEY (`fileId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programs`
+--
+
+LOCK TABLES `programs` WRITE;
+/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+INSERT INTO `programs` VALUES (1,'team','judge','2013-01-03 13:24:25',1,1,'c','Correct'),(2,'team','judge','2013-01-03 13:25:32',2,1,'c','Compile Error');
+/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `questions`
+--
+
+DROP TABLE IF EXISTS `questions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `questions` (
+  `questionID` int(11) NOT NULL AUTO_INCREMENT,
+  `difficulty` enum('Interlab','Intraschool') DEFAULT NULL,
+  `question` varchar(512) DEFAULT NULL,
+  `choiceA` varchar(256) DEFAULT NULL,
+  `choiceB` varchar(256) DEFAULT NULL,
+  `choiceC` varchar(256) DEFAULT NULL,
+  `choiceD` varchar(256) DEFAULT NULL,
+  `answer` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`questionID`)
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `questions`
+--
+
+LOCK TABLES `questions` WRITE;
+/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+INSERT INTO `questions` VALUES (174,'Interlab','What is the correct value to return to the operating system upon the successful completion of a program?','finish','0','1','end','B'),(175,'Interlab','What is the only function name all C programs must contain?','add()','swap()','main()','printf()','C'),(176,'Interlab','What punctuation is used to signal the beginning of code blocks?','-',';','}','{','D'),(177,'Interlab','What punctuation ends most lines of C code?','.','end','!',';','D'),(178,'Interlab','Which of the following is a correct comment?','*/ Comments */','** Comment **','/* Comment */','{ Comment }','C'),(179,'Interlab','Which of the following is not a correct variable type?','float','real','int','double','B'),(180,'Interlab','What is the correct operator to compare two variables if they are equal?','!=','=','==','===','C'),(181,'Interlab','Which of the following is true?','66','-0.1','-1','All of the above','D'),(182,'Interlab','What is the boolean operator for logical-and?','|','||','&','&&','D'),(183,'Interlab','True or False. Evaluate !(1 && !(0 || 1)).','True','False','Error','None of the above','A'),(184,'Interlab','Which of the following shows the correct syntax for an if statement?','if expression','if { expression','if ( expression )','expression if','C'),(185,'Interlab','What is the final value of x when the code int x; for(x=0; x<10; x++) {} is run?','0','9','10','11','C'),(186,'Interlab','What is the final value of x when the code int x; for(x=1; x<10; x++) {} is run?','10','11','1','9','A'),(187,'Interlab','What is the least number of times a do-while loop is guaranteed to loop?','0','1','2','3','B'),(188,'Interlab','Which is not a loop structure?','do while','try-catch','while','for','B'),(189,'Interlab','Who developed C?','Steve Jobs','Dennis Ritchie','Allan Kay','James Gosling','B'),(190,'Interlab','What is the return type of the function with prototype: func(char x);','char','float','double','int','D'),(191,'Interlab','Evaluate. ( 0 || ! ( 1 && ! ( 1 || 0 ) ) )','1','0','-1','2','A'),(192,'Interlab','Which of the following functions will not cause an error?','int funct(return x;);','int funct(int x) {return x=x+1;}','void funct(int) { printf( \"Hello\");','void funct(x) { printf( \"Hello\"); return 0;}','B'),(193,'Interlab','In a switch-case what code is required to avoid falling through from one case to the next?','default:','switch()','case 2:','break;','D'),(194,'Interlab','Which keyword covers unhandled possibilities in switch-case statements?','if','else','default','else if','C'),(195,'Interlab','What is the final value of c in c = a++ + b++; if a=10 and b=22?','17','32','33','35','B'),(196,'Interlab','Which of the following is a proper declaration of an int array in C/C++?','int x;','int &x;','int x[];','int x[10];','D'),(197,'Interlab','Which of the following gives the memory address of integer variable a?','*a','a','&a','address(a)','C'),(198,'Interlab','What will be the output of this line? for(;;) printf(\"hello\");','A \"hello\" word on each line.','An infinite number of \"hello\" words.','An error.','Nothing.','B'),(199,'Intraschool','Which of the following is the proper declaration of a pointer?','int x;','int &x;','ptr x;','int *x;','D'),(200,'Intraschool','Which of the following gives the memory address of integer variable a?','*a;','a;','&a;','address(a);','C'),(201,'Intraschool','Which of the following gives the memory address of a variable pointed to by pointer a?','a;','*a;','&a;','address(a);','B'),(202,'Intraschool','Which of the following gives the value stored at the address pointed to by pointer a?','a;','val(a);','*a;','&a;','C'),(203,'Intraschool','Which of the following is the proper keyword or function to allocate memory in C?','new','malloc','create','value','B'),(204,'Intraschool','Which of the following is the proper keyword or function to deallocate memory?','free','delete','clear','remove','fr'),(205,'Intraschool','Which of the following accesses a variable in structure b?','b->var;','b.var;','b-var;','b>var;','B'),(206,'Intraschool','Which of the following accesses a variable in structure *b?','b->var;','b.var;','b-var;','b>var;','A'),(207,'Intraschool','Which of the following is a properly defined struct?','struct {int a;}','struct a_struct {int a;}','struct a_struct int a;','struct a_struct {int a;};','D'),(208,'Intraschool','Which properly declares a variable of struct foo?','struct foo;','struct foo var;','foo;','int foo;','B'),(209,'Intraschool','Which of the following correctly declares an array?','int anarray[10];','int anarray;','anarray{10};','array anarray[10];','A'),(210,'Intraschool','What is the index number of the last element of an array with 29 elements?','29','28','0','Programmer-defined','B'),(211,'Intraschool','Which of the following is a two-dimensional array?','array anarray[20][20];','int anarray[20][20];','int array[20, 20];','char array[20];','B'),(212,'Intraschool','Which of the following correctly accesses the seventh element stored in foo, an array with 100 elements?','foo[6];','foo[7];','foo(7);','foo;','A'),(213,'Intraschool','Which of the following gives the memory address of the first element in array foo, an array with 100 elements?','foo[0];','foo;','&foo;','foo[1];','B'),(214,'Intraschool','Which of the following is a static string?','Static String','\"Static String\"','&#39;Static String&#39;','char string[100];','\"S'),(215,'Intraschool','What character ends all strings?','&#39;.&#39;','&#39; &#39;','&#39;\\0&#39;','&#39;\\n&#39;','C'),(216,'Intraschool','Which of the following reads in a string named x with one hundred characters?','fgets(x, 101, stdin);','fgets(x, 100, stdin);','readline(x, 100, &#39;\\n&#39;);','read(x);','fg'),(217,'Intraschool','Which of the following functions compares two strings?','compare();','stringcompare();','cmp();','strcmp();','st'),(218,'Intraschool','Which of the following adds one string to the end of another?','append();','stringadd();','strcat();','stradd();','st'),(219,'Intraschool','What object do you use to represent a file in C?','FILE*','fopen','printf','fprintf','A'),(220,'Intraschool','Before you can read or write to a file in C, what do you need to do?','Call fopen on the file','Create the file','Call fclose on the file','Use fprintf','A'),(221,'Intraschool','How do you write a string of text into a file?','Open file and use fprintf.','Open a file and use printf, the output will go to the file instead of the screen.','Open a file, and use fputc repeatedly.','Use fread to read data into the file.','A'),(222,'Intraschool','What flag do you need to pass to fopen to append to an existing file instead of recreating the file?','a','r','w','W+','A'),(223,'Intraschool','How do you open a file for binary IO?','Use the \"b\" flag to fopen','Files are opened for binary IO by default','Use fread and fwrite','You need to use a special file type, BINARYFILE*','A');
+/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `userType` enum('Team','Judge','Admin') DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('admin','21232f297a57a5a743894a0e4a801fc3','Admin'),('judge','1562eb3f6d9c5ac7e159c04a96ff4dfe','Judge'),('raven','907e131eb3bf6f21292fa1ed16e8b60c','Team'),('team','f894427cc1c571f79da49605ef8b112f','Team');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'codewars'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `ELIMINATE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `ELIMINATE`(_type VARCHAR(32), _username VARCHAR(64))
+BEGIN
+	DECLARE _exists BOOLEAN DEFAULT FALSE;
+	SELECT COUNT(*) > 0 INTO _exists FROM eliminators WHERE username = _username;
+	IF _exists THEN
+		SELECT "Username is already taken." as message;
+	ELSE
+		INSERT INTO eliminators VALUES(_username,_type,NOW(),NOW(),0);
+		SELECT questionID, question, choiceA, choiceB, choiceC, choiceD FROM questions WHERE difficulty = _type ORDER BY RAND();
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `EVAL_FILE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `EVAL_FILE`(_id INT(11), _eval VARCHAR(512))
+BEGIN
+	DECLARE _team VARCHAR(32);
+	SELECT sender INTO _team FROM programs WHERE fileId=_id;
+	INSERT INTO notifs VALUES(_id,_team,_eval);
+	UPDATE programs SET status=_eval WHERE fileId=_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GET_NOTIFS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `GET_NOTIFS`(_team VARCHAR(32))
+BEGIN
+	SELECT a.*, b.problemNo FROM notifs a, programs b WHERE a.team=_team and a.fileId=b.fileId;
+	DELETE FROM notifs WHERE team=_team;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `IS_PENDING` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `IS_PENDING`(_id INT(11),_checker VARCHAR(32))
+BEGIN
+	DECLARE _true BOOLEAN DEFAULT FALSE;
+	DECLARE _team VARCHAR(32);
+	SELECT COUNT(*) > 0 INTO _true FROM programs WHERE fileId=_id AND status='PENDING';
+	SELECT sender INTO _team FROM programs WHERE fileId=_id AND status='PENDING';
+	SELECT * FROM programs WHERE fileId=_id AND status='PENDING';
+	IF _true THEN
+		INSERT INTO notifs VALUES(_id,_team,'CHECKING');
+		UPDATE programs SET status='CHECKING', checker=_checker WHERE fileId=_id;
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SCOREPP` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `SCOREPP`(_QID INT(11), _answer VARCHAR(8), _username VARCHAR(64))
+BEGIN
+	DECLARE _correct BOOLEAN DEFAULT FALSE;
+	SELECT COUNT(*) > 0 INTO _correct FROM questions WHERE answer = _answer AND questionID = _QID;
+	UPDATE eliminators SET score = score + IF(_correct,1,0), endTime = NOW() WHERE username=_username;
+	IF _correct THEN
+		SELECT 'Correct!' as message;
+	ELSE
+		SELECT 'Wrong!' as message;
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SEND_FILE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `SEND_FILE`(_username VARCHAR(32), _problemNo INT(11), _ext VARCHAR(5))
+BEGIN
+	DECLARE _version INT(11) DEFAULT 0;
+	SELECT COUNT(*)+1 INTO _version FROM programs WHERE sender=_username AND problemNo=_problemNo;
+	INSERT INTO programs (sender,submissionTime,problemNo,version,ext,status) VALUES(_username,NOW(),_problemNo,_version,_ext,'PENDING');
+	SELECT LAST_INSERT_ID() as id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-01-11 15:14:06

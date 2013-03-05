@@ -1,0 +1,10 @@
+#include "lagrimas_exer4_functions.h"
+main(){
+    char str1[100];
+    char pigLatin[100];
+    printf("Enter a string: ");
+    getInput(str1);
+    printString(str1);
+	toPigLatin(str1,pigLatin);
+    printString(pigLatin);
+}

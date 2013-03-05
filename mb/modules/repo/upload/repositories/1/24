@@ -1,0 +1,12 @@
+<?php
+	defined('AUTH') or die;
+	defined('API') or die;
+	$input[] = $_SESSION['username'];
+	$check = true;
+	if(API::checkEmpty($input)){
+		$error = true;
+		$error_message = "Request is missing required parameter(s)";
+	}else $input = API::sanitize($link,$input);
+	
+	$query = "SELECT fileId, problemNo, status FROM programs WHERE sender='$input[0]';";
+?>

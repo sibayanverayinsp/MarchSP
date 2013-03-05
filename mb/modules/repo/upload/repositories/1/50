@@ -1,0 +1,25 @@
+<div id="ads_div" class="window">
+    <h2 class="window_title"><button></button>Ads</h2>
+    <div class="window_content">
+		<table>
+			<tr>
+				<th><img src="static/images/logos/1.jpg" alt="Sponsor" width="225px"/></th>
+			</tr> 
+			<tr>	
+				<th><img src="static/images/logos/7.png" alt="Sponsor" width="225px"/></th>
+			</tr>
+			<tr>
+				<th><img src="static/images/logos/2.png" alt="Sponsor" width="225px"/></th>
+			</tr>
+			<tr>
+				<th><img src="static/images/logos/6.jpg" alt="Sponsor" width="225px"/></th>
+			</tr>
+			<tr>
+				<th><img src="static/images/logos/4.jpg" alt="Sponsor" width="225px"/></th>
+			</tr>
+			<tr>	
+				<th><img src="static/images/logos/5.jpg" alt="Sponsor" width="225px"/></th>
+			</tr> 
+		</table>
+	</div>
+</div>

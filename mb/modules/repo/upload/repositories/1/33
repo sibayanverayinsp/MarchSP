@@ -1,0 +1,83 @@
+<?php
+	defined('AUTH') or die;
+	
+	if(!defined('RCONFIG'))
+		include_once 'bin/RConfig.php';
+	
+	DEFINE('MODULE_MGR',1);
+
+	final class RModuleMgr{
+	
+		public static function renderModules($modules){
+			foreach($modules as $module)
+				if(!file_exists('modules/'.$module['name']."/tmpl/index.php"))
+					echo "Module \"".$module['name']."\" not found.<br />";
+				else
+					include 'modules/'.$module['name']."/tmpl/index.php";
+		}
+		
+		public static function renderScripts(){
+			if(RConfig::replaceCSS){
+				$js = "";
+				foreach(glob("modules/*") as $file)
+					if(file_exists($file."/js/default.js"))
+						$js.=file_get_contents($file."/js/default.js");
+				$js.=file_get_contents("static/js/bottom.js");
+				$js.=" loadPage('".(isset($_SESSION['role'])?$_SESSION['role']:'')."');";
+				$js = RModuleMgr::minifyJS($js);
+				$f = fopen("_auto/cwars.min.js",'w');
+				fwrite($f,$js);
+				fclose($f);
+			}?>
+		<script src="_auto/cwars.min.js" type="text/javascript"></script>
+		<?php }
+		
+		
+		public static function renderStyles(){
+			if(RConfig::replaceJS){
+				$css = "";
+				foreach(glob("modules/*") as $file)
+					if(file_exists($file."/css/default.css"))
+						$css.=file_get_contents($file."/css/default.css");
+				$css.=file_get_contents("static/css/front.css");
+				$css = RModuleMgr::minifyCSS($css);
+				$f = fopen("_auto/cwars.min.css",'w');
+				fwrite($f, $css);
+				fclose($f);
+			}?>
+		<link rel="stylesheet" href="_auto/cwars.min.css" type="text/css"/>
+		<?php }
+		
+		private static function minifyJS($js){
+			$js = str_replace(array("\t")," ",$js);
+			$js = str_replace(array("\n","\r")," ",$js);
+			$js = preg_replace("/\s+/"," ",$js);
+			$js = preg_replace('#/\*.*?\*/#s','',$js);
+			$js = str_replace(array(" }","} "," } "),"}",$js);
+			$js = str_replace(array("{ "," {"," { "),"{",$js);
+			$js = str_replace(array(" )",") "," ) "),")",$js);
+			$js = str_replace(array(" (","( "," ( "),"(",$js);
+			$js = str_replace(array('+ ',' +'),'+',$js);
+			$js = str_replace(array(' =','= '),'=',$js);
+			$js = str_replace(array(' ,',', '),',',$js);
+			$js = str_replace(array('; ',' ;'),';',$js);
+			$js = str_replace(array(': ',' :'),':',$js);
+			return trim($js);
+		}
+		
+		private static function minifyCSS($css){
+			$css = str_replace(array("\t"),"",$css);
+			$css = str_replace(array("\n","\r"),"",$css);
+			$css = preg_replace("/\s+/"," ",$css);
+			$css = preg_replace('#\s+#',' ',$css);
+			$css = preg_replace('#/\*.*?\*/#s','',$css);
+			$css = str_replace(array(" }","} "),"}",$css);
+			$css = str_replace(array("{ "," {"),"{",$css);
+			$css = str_replace(array(' =','= '),'=',$css);
+			$css = str_replace(array(' ,',', '),',',$css);
+			$css = str_replace(array('; ',' ;'),';',$css);
+			$css = str_replace(array(': ',' :'),':',$css);
+			return trim($css);
+		}
+	}
+?>

@@ -1,0 +1,108 @@
+<?php
+	DEFINE('AUTH',1);
+	session_start();
+	foreach(glob("../bin/*.php") as $file) include $file;
+	
+	if(isset($_GET['login'])){
+		if($_POST['password']=="eliminator"){
+			$_SESSION['api'] = 1;
+			$_SESSION['username'] = $_POST['username'];
+			$_SESSION['role'] = $_POST['password'];
+			echo $_SESSION['role'];
+			exit;
+		}
+		else if(!(!isset($_POST['username']) || !isset($_POST['password']) || empty($_POST['username']) || empty($_POST['password']))){
+			$result = API::execute('auth/login',$_POST);
+			if (!empty($result['data'])){
+				$_SESSION['api'] = 1;
+				$_SESSION['username'] = $_POST['username'];
+				$_SESSION['role'] = $result['data'][0]['userType'];
+				echo $_SESSION['role'];
+			}else{?>0<?php }
+		}
+	}
+	else if(isset($_GET['logout']))
+		session_destroy();
+	else if(isset($_SESSION['api'])){
+		if(isset($_GET['eliminate'])){
+			$result = API::execute('team/eliminate',$_POST);
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['scorepp']))
+			API::execute('team/scorepp',$_POST);
+		else if(isset($_GET['create_account']))
+			API::execute('admin/add_account',$_POST);
+		else if(isset($_GET['delete_account']))
+			API::execute('admin/delete_account',$_POST);
+		else if(isset($_GET['update_password']))
+			API::execute('admin/update_password',$_POST);
+		else if(isset($_GET['checking'])){
+			$result = API::execute('judge/checking',array());
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['get_notifs'])){
+			$result = API::execute('team/get_notifs',array());
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['get_stash'])){
+			$result = API::execute('judge/get_stash',array());
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['get_score'])){
+			$result = API::execute('admin/get_score',array());
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['get_file']) && isset($_POST['id']) && isset($_POST['ext'])){
+			$result = API::execute('judge/is_pending',$_POST);
+			echo (empty($result['data']))?0:1;
+		}
+		else if(isset($_GET['download']) && isset($_GET['id']) && isset($_GET['ext'])){
+			$name = RConfig::upload_path.$_GET['id'].'.'.$_GET['ext'];
+			if(file_exists($name)){
+				header('Content-type: force-download');
+				header('Content-Disposition: attachment; filename="'.$_GET['id'].'.'.$_GET['ext']);
+				echo file_get_contents($name);
+			}else{?>File does not exist :(<?php }
+		}
+		else if(isset($_GET['get_code']) && isset($_POST['fileId'])){
+			$name = RConfig::upload_path.$_POST['fileId'].'.';
+			$code = "";
+			if($code = file_get_contents($name.'c'));
+			else if($code = file_get_contents($name.'java'));
+			else if($code = file_get_contents($name.'cpp'));
+			echo htmlspecialchars($code);
+		}
+		else if(isset($_GET['eval_file']) && isset($_POST['fileId']) && isset($_POST['eval'])){
+			$result = API::execute('judge/eval_file',array());
+			print_r(json_encode($result));
+		}
+		else if(isset($_GET['file_receive'])){
+			$result = 0;
+			$id = 0;
+			$filename = basename( $_FILES['myfile']['name']);
+			$res = API::execute('team/check',$_POST);
+			$ext = pathinfo($filename, PATHINFO_EXTENSION);
+			if ($_FILES['myfile']['size'] > 50000 )
+				$result = 4;
+			else if (!empty($res['data']))
+				$result = 5;
+			else if(in_array($ext,array('c','cpp','java'))) {
+				$_POST['ext'] = $ext;
+				$id = API::execute('team/send_file',$_POST);
+				$id = $id['data'][0]['id'];
+				$target_path = RConfig::upload_path . $id . '.' . $ext;
+				if(@move_uploaded_file($_FILES['myfile']['tmp_name'], $target_path))
+					$result = 1;
+				else{
+					$result = 3;
+					API::execute('team/cancel_file',array("id"=>$id));
+				}
+			}
+			else $result = 2;
+			?><script language="javascript" type="text/javascript">
+			   window.top.window.stopUpload(<?php echo $result; ?>,<?php echo $id; ?>);
+			</script><?php
+		}else{?>API is not recognized.<?php }
+	}
+	else{?><h1>You are not allowed to use this API.</h1><?php }
+?>

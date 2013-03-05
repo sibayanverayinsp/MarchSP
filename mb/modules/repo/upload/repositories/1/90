@@ -1,0 +1,166 @@
+*{
+	margin:0;
+	padding:0;
+	font-family: "Lucida Grande", "Verdana";
+	outline:0;
+}
+html,body{
+	height: 100%;
+	width: 100%;
+	overflow:hidden;
+	font-size: 12px;
+	background-color: #A9A9A9;
+	background-image: url('../static/images/bg.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	-moz-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+#center {
+	height: inherit;
+	width: inherit;
+	position: relative;
+	overflow: hidden;
+}
+#footer{
+	visibility: hidden;
+}
+input[type="button"], input[type="submit"], input [type="file"], button, a, select{
+	cursor: pointer;
+}
+input:active, input:focus, input:hover, button:hover{
+	box-shadow: 0 0 5px cyan;
+	-webkit-box-shadow: 0 0 5px cyan;
+	-moz-box-shadow: 0 0 5px cyan;
+}
+.clear{
+	clear: both;
+}
+.ui-effects-transfer {
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	-moz-box-shadow:0 0 0 1px #eee inset, 0 0 15px rgba(0,0,0,0.9);
+	-webkit-box-shadow:0 0 0 1px #eee inset, 0 0 15px rgba(0,0,0,0.9);
+	box-shadow:0 0 0 1px #eee inset, 0 0 15px rgba(0,0,0,0.9);
+	background-color:rgba(160,160,160,0.4);
+	border:1px solid #000;
+}
+
+.css3-windows-7 .window {
+	visibility: hidden;
+	-webkit-box-shadow: 10px 15px 35px rgba(0,0,0,0.3);
+	background-image:url(../static/images/window-bg.png);
+	height:146px;
+	left:555px;
+	padding-bottom:60px;
+	position:absolute;
+	top:125px;
+	width:200px;
+	z-index:1;
+}
+.css3-windows-7 .window .window_title {
+	background:transparent url(../static/images/16x16.png) no-repeat 6px 6px;
+	background-position: 12px center;
+	color:#000;
+	font:bold 12px/16px "Lucida Grande",Arial,sans-serif;
+	height:25px;
+	overflow:hidden;
+	padding:6px 0 6px 28px;
+	line-height: 25px;
+	text-indent: 10px;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.css3-windows-7 .window .window_title button{
+	color: #FFF;
+	font-width: 20px;
+	letter-spacing: -3px;
+	position: absolute;
+	right: 0;
+	top: 10px;
+	width: 85px;
+	height: 17px;
+	border:1px solid #000;
+	border-top: 0;
+	background-color:#000;
+	-moz-border-top-left-radius:25px;
+	-webkit-border-top-left-radius:25px;
+	border-top-left-radius:25px;
+	-moz-border-bottom-left-radius:25px;
+	-webkit-border-bottom-left-radius:25px;
+	border-bottom-left-radius:25px;
+}
+.css3-windows-7 .window .window_title button:hover{
+	-webkit-box-shadow: 0 0 15px cyan;
+}
+.css3-windows-7 .window .window_content {
+	-moz-border-radius:1px;
+	-webkit-border-radius:1px;
+	border-radius:1px;
+	-moz-box-shadow:0 0 0 1px rgba(255,255,255,0.65);
+	-webkit-box-shadow:0 0 0 1px rgba(255,255,255,0.65);
+	box-shadow:0 0 0px 1px rgba(255,255,255,0.65);
+	background-color:#EEE;
+	color:#000;
+	font:normal 12px/18px arial,sans-serif;
+	height:100%;
+	margin:0 10px;
+	overflow:auto;
+	padding:5px;
+	position:relative;
+}
+
+/* Resizeable */
+.ui-resizable-handle{display:block;position:absolute;}
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle{display:none;}
+.ui-resizable-n,.ui-resizable-s{height:7px;left:0;width:100%;}
+.ui-resizable-n{cursor:n-resize;top:-5px;}
+.ui-resizable-s{bottom:-5px;cursor:s-resize;}
+.ui-resizable-e,.ui-resizable-w{height:100%;top:0;width:7px;}
+.ui-resizable-e{cursor:e-resize;right:-5px;}
+.ui-resizable-w{cursor:w-resize;left:-5px;}
+.ui-resizable-se,.ui-resizable-sw,
+.ui-resizable-nw,.ui-resizable-ne{height:12px;width:12px;}
+.ui-resizable-se{bottom:0;cursor:se-resize;right:0;}
+.ui-resizable-sw{bottom:0;cursor:sw-resize;left:0;}
+.ui-resizable-nw{cursor:nw-resize;left:0;top:0;}
+.ui-resizable-ne {cursor:ne-resize;right:0;top:0;}
+
+
+*::-webkit-scrollbar {
+ width:10px;
+ height:10px;
+}
+*::-webkit-scrollbar-button{
+ height: 5px;
+ width: 5px;
+ display: block;
+ background: #CCC;
+ border-radius:10px;
+}
+*::-webkit-scrollbar-thumb {
+ border: none;
+ background: #CCC;
+ border-radius:10px;
+}
+*::-webkit-scrollbar-thumb :hover{
+ background: #444;
+}
+*:-webkit-scrollbar-thumb:hover {
+ background: #000;
+}
+*::-webkit-scrollbar-track-piece {
+ background: none;
+}
+
+
+
+
+
+/* .css3-windows-7 .window ,  */#startbar, .plus:hover, .screensht, .opened, #menu{
+	background-image:url(../static/images/window-bg.png);
+}

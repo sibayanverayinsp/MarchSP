@@ -1,0 +1,15 @@
+/*+++++++++++++++++++++++++++++++++++++++++
+Programmed by: Raven John M. Lagrimas
+					CMSC 21 - ST-5L
+July 8, 2011 6:10pm - 6:57pm
+Program Description:
+	+Allocates an array of your chosen size
+	+Enqueues an integer that you want
+	+Dequeues
++++++++++++++++++++++++++++++++++++++++++*/
+
+#include "lagrimas_exer2_functions.h"
+
+main(){
+	printMenu(); //calls the function printMenu to start the program
+}

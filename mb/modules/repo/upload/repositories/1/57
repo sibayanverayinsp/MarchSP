@@ -1,0 +1,15 @@
+<div id="eliminator_div" class="window">
+    <h2 class="window_title"><button></button>Eliminator</h2>
+    <div class="window_content">
+		<table id="eliminatorTable">
+			<tr>
+				<td>
+					<p>Hello! I'm the Eliminator, my only purpose is to eliminate you, are you ready?</p>
+					<br />
+					<button class="fightButton" id="Interlab" onclick="eliminate(this);">Interlab!</button>
+					<button class="fightButton" id="Intraschool" onclick="eliminate(this);">Intraschool!</button>
+				</td>
+			</tr>
+		</table>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+/*
+	Author: Raven John M. Lagrimas
+	CMSC 21 ST-5L
+	Program Description:
+		Postfix evaluation using file I/O
+		Used doubly without dummy
+	Date presented: September 28, 2011
+	Bonuses implemented.
+*/
+
+#include<stdlib.h>
+#include<stdio.h>
+#include "lagrimas_exer11_functions.h"
+
+main(){
+	FILE *fp, *fp2;	//file for reading and writing
+	nd *list=NULL, *p;
+	int lineNum=1, operand=0, operator=0, invalid=0;	//counts the line
+	char line[256];	//maximum character printable for float + 1 for terminating character
+	fp = fopen("post_in.txt","r");	//open post_in.txt for reading
+	fp2 = fopen("post_out.txt","w");	//create/overwrite post_out.txt for output
+	fp = fopen("post_in.txt","r");											//open again post_in.txt for reading to rewind
+	for(lineNum=1;fscanf(fp,"%s",line)!=-1;lineNum++){				//loop for scanning post_in
+		if (checkOperation(line)){											//check if the line is an operation
+			fprintf(fp2,"%d). %s is encountered. \n", lineNum++, line);
+			for(p=list;p->next!=NULL;p=p->next);						//go to tail
+			fprintf(fp2,"%d). Destroy node for %.2f and %.2f.\n", lineNum++, p->prev->x, p->x);
+			fprintf(fp2, "%d). Perform %.2f %s %.2f.\n", lineNum, p->prev->x, line, p->x);
+			list=operate(list, checkOperation(line));					//operate the nodes
+		}
+		else{																		//if not operation then it is a number
+			list=insertNode(list, line);									//insert node
+			fprintf(fp2,"%d). Add new node for %s.\t", lineNum, line);
+			fprintf(fp2, "[ ");
+			fprintf(fp2, "%.2f ", list->x);
+			for(p=list;p->next!=NULL;p=p->next) fprintf(fp2, "%.2f ", p->next->x);	//loop for printing the list
+			fprintf(fp2, "]\n");
+		}
+	}
+	fprintf(fp2, "%d). Stop\n", lineNum++);
+	if(list!=NULL) fprintf(fp2, "%d). Result is %.2f.", lineNum, list->x);
+	free(list);																		//free
+	fclose(fp); 																		//close reading
+	fclose(fp2);																		//close post_out.txt to save
+}

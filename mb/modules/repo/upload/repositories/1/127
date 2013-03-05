@@ -1,0 +1,11 @@
+14:36:09|::1|auth/login|anon|team,team|
+14:36:10|::1|auth/login|team|team,team|
+14:36:10|::1|team/get_files|team|none|
+14:36:12|::1|team/get_files|team|none|
+14:36:18|::1|auth/login|anon|team,team|
+14:36:19|::1|team/get_files|team|none|
+15:56:01|::1|auth/login|anon|team,team|
+15:56:02|::1|team/get_files|team|none|
+15:56:24|::1|auth/login|anon|admin,admin|
+15:56:24|::1|admin/get_users|admin|none|
+15:56:24|::1|admin/get_users|admin|none|

@@ -1,0 +1,17 @@
+#ads_div{
+	min-width: 310px;
+	line-height: 25px;
+	top: 50px;
+	left: 100px;
+	height: 550px;
+}
+#ads_div table{
+	width: 100%;
+	margin: 0 auto;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+#ads_div table th{
+	border: 1px solid #CCC;
+	padding: 5px 0;
+}

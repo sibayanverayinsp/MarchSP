@@ -1,0 +1,31 @@
+#login_div{
+	top: 500px;
+	left: 340px;
+	width: 700px;
+}
+#login_div .window_content{
+	text-align: center;
+}
+#login_div input{
+	font-size: 20px;
+	font-family: "Century Gothic";
+	margin: 5px 0;
+	padding: 3px 5px;
+	text-align: center;
+}
+#username{
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+#password{
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+#loginButton,.fightButton{
+	border-radius: 5px;
+	background: #DDD;
+	border: 0;
+	color: #666;
+	padding: 3px 30px !important;
+	-webkit-box-shadow: 0 2px 5px #000;
+}

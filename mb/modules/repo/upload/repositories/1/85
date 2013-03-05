@@ -1,0 +1,16 @@
+<div id="login_div" class="window">
+	<h2 class="window_title"><button></button>Welcome to Code Wars</h2>
+	<div class="window_content">
+		<p>
+			<strong><?php echo RConfig::app_name;?></strong> is an annual programming contest held by the most prestigious consortium of
+			<br />
+			Computer Science students of the University of the Philippines, Los Banos, The UPLB Computer Science Society, along with the week long celebration of Computer Science.
+		</p>
+		<form action="<?php echo RConfig::ajax_url?>login" method="POST" onsubmit="return validateLogin(this);">
+			<input type="text" class="inputText" name="username" id="username" placeholder="Username" required="required"/>
+			<input type="password" class="inputText" name="password" id="password" placeholder="Password" required="required"/>
+			<br />
+			<input type="submit" id="loginButton" value="Join the War!"/>
+		</form>
+	</div>
+</div>

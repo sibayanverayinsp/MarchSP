@@ -1,0 +1,75 @@
+function validate(f){
+	for(var i=0; i<f.elements.length; i++){
+		var element = f.elements[i];
+		if(element.value==""){
+			element.focus();
+			alert("Please fill up the form before submitting");
+			return false;
+		}
+	}
+	if(f.password.value!=f.cpassword.value)
+		alert("Passwords did not match.");
+	else{
+		$.post( $(f).attr('action'), $(f).serialize(),
+			function( data ) {
+				$('#username3').append("<option value='"+ f.username.value +"' id='option_"+ f.username.value +"'>"+ f.username.value +" | "+ f.role.value +"</option>");
+				$('#username4').append("<option value='"+ f.username.value +"' id='option2_"+ f.username.value +"'>"+ f.username.value +" | "+ f.role.value +"</option>");
+				alert("Account successfully created!");
+				f.reset();
+			}
+		);
+	}
+	return false;
+}
+function validate2(f){
+	$.post( $(f).attr('action'), $(f).serialize(),
+		function( data ) {
+			$('#score_row_'+(f.username.value)).remove();
+			$('#option2_'+(f.username.value)).remove();
+			$('#option_'+(f.username.value)).remove();
+			alert("Account successfully deleted!");
+		}
+	);
+	return false;
+}
+function validate3(f){
+	$.post( $(f).attr('action'), $(f).serialize(),
+		function( data ) {
+			alert("Password successfully changed!");
+			f.reset();
+		}
+	);
+	return false;
+}
+function poll3(models2){
+	if($("#score_table") == undefined) return;
+	var models2 = models2;
+	$.post('ajax/?get_score', {},
+		function(data){
+			if(data=="" || data == undefined) return;
+			var json2 = JSON.parse(data);
+			var json = json2.data;
+			var models = models2.data;
+			for(var j=0;j<json.length;j++){
+				for(var i=0;i<models.length;i++){
+					if(json[j].sender == models[i].sender && json[j].score!=models[i].score){
+						$('#score_'+json[j].sender).html(json[j].score);
+						$('#score_date_'+json[j].sender).html(new Date().toLocaleTimeString());
+						break;
+					}else if(json[j].sender == models[i].sender) break;
+				}
+				if(i==models.length){
+					$("#score_table").append("
+					<tr id='score_row_"+ json[j].sender +"'>
+						<td>"+ json[j].sender +"</td>
+						<td id='score_"+ json[j].sender +"'>"+ json[j].score +"</td>
+						<td id='score_date_"+ json[j].sender +"'>"+ new Date().toLocaleTimeString() +"</td>
+					</tr>
+					");
+				}
+			}
+			models2 = json2;
+			setTimeout(function(){ poll3(models2) },5000);
+		}
+	);
+};

@@ -1,0 +1,14 @@
+<?php
+	defined('AUTH') or die;
+	defined('API') or die;
+	$input[] = $_SESSION['username'];
+	$input[] = $_POST['problemNo'];
+	$input[] = $_POST['ext'];
+	$check = true;
+	if(API::checkEmpty($input)){
+		$error = true;
+		$error_message = "Request is missing required parameter(s)";
+	}else $input = API::sanitize($link,$input);
+	
+	$query = "CALL SEND_FILE('$input[0]','$input[1]','$input[2]')";
+?>

@@ -1,0 +1,156 @@
+4:31:58|127.0.0.1|auth/login|anon|team,team|
+4:31:58|127.0.0.1|team/get_files|team|none|
+4:34:32|127.0.0.1|auth/login|anon|judge,Judge|No data
+4:34:36|127.0.0.1|auth/login|anon|judge,judge|
+4:34:37|127.0.0.1|judge/checking|judge|none|No data
+4:35:11|127.0.0.1|team/check|team|2,UPLOAD|No data
+4:35:11|127.0.0.1|team/send_file|team|2,UPLOAD,c|
+4:35:33|127.0.0.1|judge/is_pending|judge|3,c|
+4:36:15|127.0.0.1|auth/login|anon|judge,judge|
+4:36:16|127.0.0.1|judge/checking|judge|none|
+4:36:35|127.0.0.1|judge/eval_file|judge|none|No data
+4:36:41|127.0.0.1|team/check|team|2,UPLOAD|No data
+4:36:42|127.0.0.1|team/send_file|team|2,UPLOAD,c|
+4:37:59|127.0.0.1|judge/is_pending|judge|4,c|
+4:38:21|127.0.0.1|team/check|team|2,UPLOAD|
+4:39:10|127.0.0.1|auth/login|anon|judge,judge|
+4:39:10|127.0.0.1|judge/checking|judge|none|
+4:39:31|127.0.0.1|judge/checking|judge|none|
+4:40:14|127.0.0.1|judge/checking|judge|none|
+4:40:58|127.0.0.1|auth/login|anon|team1,team1|No data
+4:41:09|127.0.0.1|auth/login|anon|admin,admin|
+4:41:10|127.0.0.1|admin/get_users|admin|none|
+4:41:10|127.0.0.1|admin/get_users|admin|none|
+4:43:04|127.0.0.1|admin/add_account|admin|team2,team2,team2,Team|No data
+4:43:44|127.0.0.1|auth/login|anon|team2,team2|
+4:43:45|127.0.0.1|team/get_files|team2|none|No data
+4:44:27|127.0.0.1|team/check|team2|2,UPLOAD|No data
+4:44:27|127.0.0.1|team/send_file|team2|2,UPLOAD,c|
+4:44:48|127.0.0.1|judge/is_pending|judge|5,c|
+4:44:53|127.0.0.1|judge/eval_file|judge|none|No data
+4:45:19|127.0.0.1|team/get_files|team|none|
+4:54:21|127.0.0.1|team/get_files|team|none|
+4:54:43|127.0.0.1|auth/login|anon|team,team|
+4:54:43|127.0.0.1|team/get_files|team|none|
+4:55:00|127.0.0.1|team/check|team|6,UPLOAD|No data
+4:55:01|127.0.0.1|team/send_file|team|6,UPLOAD,c|
+4:57:30|127.0.0.1|team/check|team|10,UPLOAD|No data
+4:57:31|127.0.0.1|team/send_file|team|10,UPLOAD,c|
+4:57:42|127.0.0.1|auth/login|anon|team,team|
+4:57:42|127.0.0.1|team/get_files|team|none|
+4:58:45|127.0.0.1|judge/is_pending|judge|7,c|
+4:59:09|127.0.0.1|team/get_files|team|none|
+4:59:53|127.0.0.1|team/check|team2|2,UPLOAD|No data
+4:59:53|127.0.0.1|team/send_file|team2|2,UPLOAD,c|
+4:59:57|127.0.0.1|team/get_files|team2|none|
+5:00:59|127.0.0.1|team/check|team|2,UPLOAD|
+5:01:03|127.0.0.1|team/get_files|team|none|
+5:03:40|127.0.0.1|judge/is_pending|judge|8,c|
+5:03:56|127.0.0.1|judge/checking|judge|none|
+5:04:23|127.0.0.1|team/check|team|2,UPLOAD|
+5:04:27|127.0.0.1|team/check|team|8,UPLOAD|No data
+5:04:27|127.0.0.1|team/send_file|team|8,UPLOAD,c|
+5:04:41|127.0.0.1|team/check|team|4,UPLOAD|No data
+5:04:42|127.0.0.1|team/send_file|team|4,UPLOAD,c|
+5:04:46|127.0.0.1|judge/is_pending|judge|9,c|
+5:05:12|127.0.0.1|team/get_files|team|none|
+5:05:23|127.0.0.1|team/check|team|2,UPLOAD|
+5:05:40|127.0.0.1|team/check|team|7,UPLOAD|No data
+5:05:40|127.0.0.1|team/send_file|team|7,UPLOAD,c|
+5:05:45|127.0.0.1|team/check|team|7,UPLOAD|
+5:05:52|127.0.0.1|team/check|team|7,UPLOAD|
+5:06:02|127.0.0.1|team/check|team|7,UPLOAD|
+5:06:35|127.0.0.1|judge/is_pending|judge|11,c|
+5:07:19|127.0.0.1|team/check|team|7,UPLOAD|
+5:07:39|127.0.0.1|team/check|team|7,UPLOAD|
+5:12:16|127.0.0.1|team/get_files|team|none|
+5:12:50|127.0.0.1|team/check|team|4,UPLOAD|
+5:13:02|127.0.0.1|team/check|team|9,UPLOAD|No data
+5:13:02|127.0.0.1|team/send_file|team|9,UPLOAD,c|
+5:13:13|127.0.0.1|team/check|team|9,UPLOAD|
+5:14:23|127.0.0.1|auth/login|anon|judge,judge|
+5:14:24|127.0.0.1|judge/checking|judge|none|
+5:14:59|127.0.0.1|judge/is_pending|judge|12,c|
+5:15:16|127.0.0.1|team/get_files|team|none|
+5:15:50|127.0.0.1|team/check|team|5,UPLOAD|No data
+5:15:51|127.0.0.1|team/send_file|team|5,UPLOAD,c|
+5:27:56|127.0.0.1|judge/is_pending|judge|13,c|
+5:29:02|127.0.0.1|team/get_files|team|none|
+5:29:22|127.0.0.1|team/check|team|3,UPLOAD|No data
+5:29:22|127.0.0.1|team/send_file|team|3,UPLOAD,c|
+5:30:06|127.0.0.1|judge/is_pending|judge|14,c|
+7:00:25|127.0.0.1|auth/login|anon|team,team|
+7:00:26|127.0.0.1|team/get_files|team|none|
+7:02:10|127.0.0.1|team/get_files|team|none|
+7:05:34|127.0.0.1|team/get_files|team|none|
+7:06:23|127.0.0.1|auth/login|anon|judge,judge|
+7:06:24|127.0.0.1|judge/checking|judge|none|
+7:06:54|127.0.0.1|auth/login|anon|team2,team2|
+7:06:55|127.0.0.1|team/get_files|team2|none|
+7:07:04|127.0.0.1|team/check|team2|1,UPLOAD|No data
+7:07:04|127.0.0.1|team/send_file|team2|1,UPLOAD,c|
+7:07:37|127.0.0.1|team/get_files|team2|none|
+7:07:47|127.0.0.1|team/check|team2|3,UPLOAD|No data
+7:07:47|127.0.0.1|team/send_file|team2|3,UPLOAD,c|
+7:08:11|127.0.0.1|judge/checking|judge|none|
+7:08:23|127.0.0.1|team/get_files|team2|none|
+7:08:32|127.0.0.1|team/check|team2|4,UPLOAD|No data
+7:08:32|127.0.0.1|team/send_file|team2|4,UPLOAD,c|
+7:09:00|127.0.0.1|team/get_files|team2|none|
+7:09:09|127.0.0.1|team/check|team2|5,UPLOAD|No data
+7:09:09|127.0.0.1|team/send_file|team2|5,UPLOAD,c|
+7:10:05|127.0.0.1|team/get_files|team2|none|
+7:10:14|127.0.0.1|team/check|team2|6,UPLOAD|No data
+7:10:14|127.0.0.1|team/send_file|team2|6,UPLOAD,c|
+7:10:46|127.0.0.1|team/get_files|team2|none|
+7:11:18|127.0.0.1|team/get_files|team2|none|
+7:11:29|127.0.0.1|team/check|team2|7,UPLOAD|No data
+7:11:29|127.0.0.1|team/send_file|team2|7,UPLOAD,c|
+7:11:41|127.0.0.1|judge/eval_file|judge|none|No data
+7:12:04|127.0.0.1|team/get_files|team2|none|
+7:27:37|127.0.0.1|judge/is_pending|judge|6,c|
+7:27:50|127.0.0.1|team/check|team2|1,UPLOAD|
+7:28:57|127.0.0.1|team/get_files|team2|none|
+7:29:04|127.0.0.1|team/get_files|team2|none|
+7:31:46|127.0.0.1|team/get_files|team2|none|
+7:31:52|127.0.0.1|team/get_files|team2|none|
+7:31:56|127.0.0.1|team/get_files|team2|none|
+7:32:32|127.0.0.1|team/eliminate|bert|Intraschool|
+7:32:40|127.0.0.1|team/scorepp|bert|209,A|Correct!
+7:32:47|127.0.0.1|team/scorepp|bert|211,B|Correct!
+7:32:50|127.0.0.1|team/scorepp|bert|215,C|Correct!
+7:33:03|127.0.0.1|team/scorepp|bert|202,D|Wrong!
+7:33:17|127.0.0.1|team/scorepp|bert|222,A|Correct!
+7:33:23|127.0.0.1|team/scorepp|bert|204,A|Wrong!
+7:33:36|127.0.0.1|team/scorepp|bert|218,C|Wrong!
+7:33:43|127.0.0.1|team/scorepp|bert|206,B|Wrong!
+7:34:01|127.0.0.1|team/scorepp|bert|223,D|Wrong!
+7:34:09|127.0.0.1|team/scorepp|bert|207,D|Correct!
+7:34:15|127.0.0.1|team/scorepp|bert|219,A|Correct!
+7:34:21|127.0.0.1|team/scorepp|bert|205,A|Wrong!
+7:34:34|127.0.0.1|team/scorepp|bert|216,B|Wrong!
+7:34:38|127.0.0.1|team/scorepp|bert|199,D|Correct!
+7:34:44|127.0.0.1|team/scorepp|bert|201,C|Wrong!
+7:34:53|127.0.0.1|team/scorepp|bert|200,C|Correct!
+7:34:56|127.0.0.1|team/scorepp|bert|217,D|Wrong!
+7:34:59|127.0.0.1|team/scorepp|bert|214,B|Wrong!
+7:35:07|127.0.0.1|team/scorepp|bert|212,A|Correct!
+7:35:14|127.0.0.1|team/scorepp|bert|208,B|Correct!
+7:35:16|127.0.0.1|team/scorepp|bert|221,B|Wrong!
+7:35:20|127.0.0.1|team/scorepp|bert|213,A|Wrong!
+7:35:29|127.0.0.1|team/scorepp|bert|210,B|Correct!
+7:35:36|127.0.0.1|team/scorepp|bert|203,B|Correct!
+7:35:43|127.0.0.1|team/scorepp|bert|220,A|Correct!
+7:36:27|127.0.0.1|auth/login|anon|team2,team2|
+7:36:28|127.0.0.1|team/get_files|team2|none|
+7:38:24|127.0.0.1|team/get_files|team2|none|
+7:57:40|127.0.0.1|team/get_files|team2|none|
+8:27:06|127.0.0.1|auth/login|anon|team,team|
+8:27:06|127.0.0.1|team/get_files|team|none|
+8:28:52|127.0.0.1|team/get_files|team|none|No data
+8:30:01|127.0.0.1|team/get_files|team|none|No data
+8:39:37|127.0.0.1|team/get_files|team|none|No data
+11:24:42|127.0.0.1|team/get_files|team|none|No data
+11:56:58|127.0.0.1|team/get_files|team|none|No data
+19:44:07|127.0.0.1|team/get_files|team|none|No data
+19:57:53|127.0.0.1|team/get_files|team|none|No data

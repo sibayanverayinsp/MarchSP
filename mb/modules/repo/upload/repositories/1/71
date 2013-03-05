@@ -1,0 +1,45 @@
+<div class="window" id="file_stash_div">
+	<h2 class="window_title"><button></button>CodeWars | Judge</h2>
+	<div class="window_content">
+		<table>
+			<tr>
+				<th colspan="2">
+					<div id="fxdhyt">
+						<form action="<?php echo RConfig::ajax_url?>get_file" onsubmit="return getFile(this);">
+						<input type="hidden" name="id" id="stash_id"/>
+						<input type="hidden" name="ext" id="stash_ext"/>
+						<table id="stash_table">
+							<tr>
+								<th>ID</th>
+								<th>Team</th>
+								<th>Problem</th>
+								<th>Version</th>
+								<th>&nbsp;</th>
+							</tr>
+						</table>
+						</form>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<textarea id="code_area" readonly="readonly"></textarea>
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<select id="file_eval">
+						<option value="Compile Error">Compile Error</option>
+						<option value="Syntax Error">Syntax Error</option>
+						<option value="Wrong Output">Wrong Output</option>
+						<option value="Wrong Implementation">Wrong Implementation</option>
+						<option value="Correct">Correct</option>
+					</select>
+				</td>
+				<td>
+					<button onclick="evaluateFile();" id="submitButton" disabled="disabled">SUBMIT</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
