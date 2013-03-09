@@ -13,7 +13,8 @@
 		}
 	}
 ?>
-<table class="vers<?php echo $_POST['vers_id']?>" style="width:97%;float:right;"></table>
+<div class="vers<?php echo $_POST['vers_id']?>" style="padding-left:3%;"></div>
 <script type="text/javascript">
+	lessWidth("vers"+<?php echo $_POST['vers_id']?>);
 	addRow(<?php echo json_encode($arr); ?>,"dir");
 </script>

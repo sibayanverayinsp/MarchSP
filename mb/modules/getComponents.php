@@ -13,7 +13,7 @@
 		}
 	}
 ?>
-<table class="cmp"></table>
+<div class="cmp" style="display:table"></div>
 <script type="text/javascript">
 	addRow(<?php echo json_encode($arr); ?>,"cmp");
 </script>

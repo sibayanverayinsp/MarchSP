@@ -1,7 +1,0 @@
-6:37:59|127.0.0.1|auth/login|anon|admin,admin|
-6:38:00|127.0.0.1|admin/get_users|admin|none|
-6:38:00|127.0.0.1|admin/get_users|admin|none|
-10:16:40|127.0.0.1|auth/login|anon|judge,judge|
-10:16:41|127.0.0.1|judge/checking|judge|none|No data
-13:17:58|127.0.0.1|auth/login|anon|team,team|
-13:17:59|127.0.0.1|team/get_files|team|none|No data

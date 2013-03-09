@@ -8,10 +8,10 @@
 	?>
 	<head>
 		<title>Magic Box</title>
-		<link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.10.0/themes/base/jquery-ui.css">
+		<!--<link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.10.0/themes/base/jquery-ui.css">-->
 		<link rel="stylesheet" type="text/css" href="../css/mb.css">
 		<script src="../js/jquery-1.9.1.min.js"></script>
-		<script src="../js/jquery-ui-1.10.0/ui/jquery-ui.js"></script>
+		<!--<script src="../js/jquery-ui-1.10.0/ui/jquery-ui.js"></script>-->
 		<script src="../js/mb.js"></script>
 		<script src="../js/jqueryFunc.js"></script>
 		<!--<script src="../js/disable.js"></script>-->
@@ -23,7 +23,7 @@
 				<br><br>
 				<input type="password" name="password" id="password" placeholder=" Password" required="required" onblur="checkField('password')">
 				<br><br>
-				<input type="submit" value="Login">
+				<input type="submit" class="submit_btn" value="Login">
 			</form>
 			<div class="err_msg">
 				<?php

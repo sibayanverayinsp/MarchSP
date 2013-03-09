@@ -1,8 +1,0 @@
-22:26:24|::1|auth/login|anon|elimination,elimination|No data
-22:33:34|::1|auth/login|anon|elims,sadf|No data
-22:35:53|::1|team/get_files|elims|none|No data
-22:37:45|::1|team/get_files|elims|none|No data
-23:33:56|::1|auth/login|anon|admin,admin|
-23:33:57|::1|admin/get_users|admin|none|
-23:33:57|::1|admin/get_users|admin|none|
-23:58:14|::1|team/eliminate|Team Mai-Team|Interlab|
