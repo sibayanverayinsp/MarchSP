@@ -1,6 +1,6 @@
 <?php
 
-	function addLog($acct_id, $repo_id, $vers_id, $action) {
+	function addLog($acct_id, $repo_id, $parent_id, $action) {
 		log_connect();
 		$query = "INSERT INTO `logs`(`log_date`, `log_acct_id`, `log_repo_id`, `log_vers_id`, `log_action`) VALUES (now(),  $acct_id, $repo_id, $vers_id, '".$action."')";
 		$result=mysql_query($query) or die(mysql_error());

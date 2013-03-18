@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="css/mb.css">
 		<link rel="stylesheet" type="text/css" href="css/prettify.css">
 		<script src="js/jquery-1.9.1.min.js"></script>
-		<!--<script src="js/jquery-ui-1.10.0/ui/jquery-ui.js"></script>-->
+		<script src="js/jquery-ui-1.10.0/ui/minified/jquery-ui.min.js"></script>
 		<script src="js/jquery.form.js"></script>
 		<script src="js/mb.js"></script>
 		<script src="js/jqueryFunc.js"></script>
@@ -31,7 +31,7 @@
 	<body>
 		<div class="container">
 			<div class="mainDivs repo">
-				<p>repositories</p>
+				<p class="title">repositories</p>
 				<div class="repositories">
 					<div class="rep">
 
@@ -43,18 +43,17 @@
 				</div>
 			</div>
 			<div class="mainDivs comp">
-				<p>components</p>
+				<p class="title">files and folders</p>
 				<div class="components">
 
 				</div>
 			</div>
-			<!--<div class="mainDivs ver">
-				<p>versions</p>
-				<div class="versions">
+			<div class="mainDivs logs">
+				<p class="title">activities</p>
+				<div class="log">
 
 				</div>
-			</div>-->
-			<div id="pop-up"></div>
+			</div>
 			<div id="chat-box">
 				<div class="chat"></div>
 				<div class="chat-link"><a><div id="chat_btn">Chat</div></a></div>
@@ -94,6 +93,7 @@
 					<input type="hidden" name="download_parent_id" id="download_parent_id">
 					<input type="hidden" name="download_repo_id" id="download_repo_id">
 					<input type="hidden" name="download_name" id="download_name">
+					<input type="hidden" name="is_dir" id="is_dir">
 				</form>
 			</div>
 		</div>
@@ -103,6 +103,23 @@
 				<input type="hidden" name="diff_from" id="diff_from">
 				<input type="hidden" name="diff_to" id="diff_to">
 			</form>
+		</div>
+		<div id="qv_div">
+			<form name="qv_form" action="modules/quickview.php" id="qv_form" method="post" target="diff_iframe">
+				<input type="hidden" name="qv_repo_id" id="qv_repo_id">
+				<input type="hidden" name="qv_file" id="qv_file">
+			</form>
+		</div>
+		<div class="wall4">
+			<div id="revert_div">
+				<form name="revert_form" action="modules/revert.php" id="revert_form" method="post">
+					<input type="hidden" name="version_id" id="version_id">
+					<textarea class="message" name="revert_message" id="revert_message" rows="4" cols="50" placeholder="insert comment here..." maxlength="256"></textarea>
+					<br><br>
+					<input type="submit" class="submit_btn revert_btn" value="REVERT">
+				</form>
+				<a class="a_close_btn"><img src="images/close.png" width="30px" class="close_btn"></a>
+			</div>
 		</div>
 		<?php
 			$arr=query("SELECT * FROM repositories");
