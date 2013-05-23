@@ -1,4 +1,27 @@
 <?php
+
+/**
+ * @title
+ * MagicBox: A Simple Version Control System
+ *
+ * @description
+ * A Special Problem Presented to the Faculty of
+ * The Institute of Computer Science
+ * University of the Philippines Los Banos
+ *
+ * In Partial Fulfillment of the Requirements of the Degree of
+ * Bachelor of Science in Computer Science
+ *
+ * @authors
+ * Jasper A. Sibayan 
+ * 2009-46112
+ * and 
+ * Wilbert G. Verayin
+ * 2009-60315
+ * @date
+ * April 2013
+ */
+
 	// Function to remove folders and files 
 	function rrmdir($dir) {
 		if(is_dir($dir)) {
@@ -53,7 +76,7 @@
 			$zip->close();
 		}
 	}
-	
+
 	//function to create a zip from a directory
 	function createdirzip($source, $destination, $overwrite="") {
 		if(!extension_loaded("zip") || !file_exists($source)) {

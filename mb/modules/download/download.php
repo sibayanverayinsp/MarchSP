@@ -1,53 +1,87 @@
 <?php
+
+/**
+ * @title
+ * MagicBox: A Simple Version Control System
+ *
+ * @description
+ * A Special Problem Presented to the Faculty of
+ * The Institute of Computer Science
+ * University of the Philippines Los Banos
+ *
+ * In Partial Fulfillment of the Requirements of the Degree of
+ * Bachelor of Science in Computer Science
+ *
+ * @authors
+ * Jasper A. Sibayan 
+ * 2009-46112
+ * and 
+ * Wilbert G. Verayin
+ * 2009-60315
+ * @date
+ * April 2013
+ */
+
 	session_start();
-	if(!isset($_SESSION['user'])) {
-		header('Location: ../');
+	if(!isset($_SESSION['user']) || !isset($_POST["download_repo_id"])) {
+		?>
+		<html>
+			<head>
+				<title>404 Not Found</title>
+			</head>
+			<body>
+				<h1>Not Found</h1>
+				<?php
+				echo "<p>The requested URL ".$_SERVER["REQUEST_URI"]." was not found on this server.</p>";
+				?>
+			</body>
+		</html>
+		<?php
 	}
 	else {
-		if(isset($_POST['download_repo_id'])) {
-			include("../query.php");
-			include("../_functions.php");
-			$rx=$_POST['download_repo_id'];
-			$px=$_POST['download_parent_id'];
-			$filename=$_POST['download_name'];
-			if($_POST['is_dir']=="false") {
-				if(!file_exists("downloads/files")) {
-					mkdir("downloads\\files",0777);
-				}
-				$filename=fillFolder("downloads\\files",$rx,$px);
-				$name="downloads\\files\\".$filename;
-				if(file_exists($name)) {
-					header('Content-type: '.getMimetype(($pos = strrpos($filename,'.')) !== false ? substr($filename,$pos+1) : null));
-					header('Content-disposition: attachment; filename="'.$filename.'"');
-					$f=fopen($name, "rb");
-					fpassthru($f);
-    				fclose($f);
-					rrmdir("downloads\\files");
-				}
-				else {
-					echo "Failed to find the file.<br>";
-				}
+		include("../query.php");
+		include("../_functions.php");
+		$rx=$_POST['download_repo_id'];
+		$px=$_POST['download_parent_id'];
+		$filename=$_POST['download_name'];
+		if($_POST['is_dir']=="false") {
+			if(!file_exists("downloads/files")) {
+				mkdir("downloads\\files",0777);
+			}
+			$filename=fillFolder("downloads\\files",$rx,$px);
+			$name="downloads\\files\\".$filename;
+			if(file_exists($name)) {
+				header('Content-type: '.getMimetype(($pos = strrpos($filename,'.')) !== false ? substr($filename,$pos+1) : null));
+				header('Content-disposition: attachment; filename="'.$filename.'"');
+				$f=fopen($name, "rb");
+				fpassthru($f);
+				fclose($f);
+				rrmdir("downloads\\files");
 			}
 			else {
-				if(!file_exists("downloads/$filename")) {
-					mkdir("downloads\\$filename",0777);
-				}
-				fillFolder("downloads\\$filename",$rx,$px);
-				chdir("downloads\\$filename");
-				createdirzip("..\\$filename","..\\$filename.zip");
-				chdir("..\\..\\");
-				rrmdir("downloads\\$filename");
-				//download the zip
-				$name="downloads\\$filename.zip";
-				if(file_exists($name)) {
-					header('Content-type: force-download');
-					header('Content-Disposition: attachment; filename="'.$filename.'.zip"');
-					echo file_get_contents($name);
-					unlink($name);
-				}
-				else {
-					echo "Failed to find the zip file.<br>";
-				}
+				echo "Failed to find the file.<br>";
+			}
+		}
+		else {
+			if(!file_exists("downloads/$filename")) {
+				mkdir("downloads\\$filename",0777);
+			}
+			fillFolder("downloads\\$filename",$rx,$px);
+			chdir("downloads");
+			createdirzip("$filename","$filename.zip");
+			chdir("..\\");
+			rrmdir("downloads\\$filename");
+			//download the zip
+			$name="downloads\\$filename.zip";
+			if(file_exists($name)) {
+				header('Content-type: '.getMimetype(($pos = strrpos($filename.'.zip','.')) !== false ? substr($filename.'.zip',$pos+1) : null));
+				header('Content-disposition: attachment; filename="'.$filename.'.zip"');
+				readfile($filename.".zip");
+				echo file_get_contents($name);
+				unlink($name);
+			}
+			else {
+				echo "Failed to find the zip file.<br>";
 			}
 		}
 	}
@@ -55,7 +89,7 @@
 	function fillFolder($path,$repo_id,$parent_id) {	
 		$par=$parent_id;
 		if($_POST['is_dir']=="true") {
-			$arr=query("SELECT * from versions WHERE vers_repo_id=$repo_id AND vers_parent=$parent_id");
+			$arr=query("SELECT * FROM (SELECT *, MAX(vers_repo_vers) FROM(SELECT * FROM versions WHERE vers_repo_id=$repo_id AND vers_parent=".$parent_id." ORDER BY vers_repo_vers DESC) AS c GROUP BY c.vers_comp_id ORDER BY vers_type, vers_name) AS a WHERE a.vers_type='file' OR a.vers_type='dir'");
 		}
 		else {
 			$arr=query("SELECT * from versions WHERE vers_repo_id=$repo_id AND vers_id=$parent_id");

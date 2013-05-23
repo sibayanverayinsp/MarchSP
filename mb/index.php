@@ -1,3 +1,28 @@
+<!--
+
+/**
+ * @title
+ * MagicBox: A Simple Version Control System
+ *
+ * @description
+ * A Special Problem Presented to the Faculty of
+ * The Institute of Computer Science
+ * University of the Philippines Los Banos
+ *
+ * In Partial Fulfillment of the Requirements of the Degree of
+ * Bachelor of Science in Computer Science
+ *
+ * @authors
+ * Jasper A. Sibayan 
+ * 2009-46112
+ * and 
+ * Wilbert G. Verayin
+ * 2009-60315
+ * @date
+ * April 2013
+ */
+
+-->
 <!DOCTYPE html>
 <html>
 	<?php
@@ -11,12 +36,16 @@
 	?>
 	<head>
 		<title>Magic Box</title>
-		<!--<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.10.0/themes/base/jquery-ui.css">-->
 		<link rel="stylesheet" type="text/css" href="css/mb.css">
 		<link rel="stylesheet" type="text/css" href="css/prettify.css">
+		<link rel="stylesheet" type="text/css" href="css/themes/base/minified/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.ui.chatbox.css">
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery-ui-1.10.0/ui/minified/jquery-ui.min.js"></script>
 		<script src="js/jquery.form.js"></script>
+		<script src="js/jquery.ui.chatbox.js"></script>
 		<script src="js/mb.js"></script>
 		<script src="js/jqueryFunc.js"></script>
 		<script src="js/prettify.js"></script>
@@ -24,6 +53,33 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				jqueryFunc();
+				//chat
+				var box = null;
+				box = $("#chat_div").chatbox({
+					id: document.getElementById("user").value,
+					user: {
+						key: "value"
+					},
+					offset: 20,
+					title: "Chat",
+					messageSent: function(id, user, msg) {
+						$.ajax({
+							url: "modules/addChat.php",
+							data: {
+								message: msg,
+							},
+							type: "POST",
+							success: function(data) {
+								$("#chat_div").chatbox("option","boxManager").addMsg(id,msg);
+							}
+						});
+					}
+				});
+				setInterval(function() {
+					$("#chat_div").load("modules/getChats.php",{valid:1},function() {
+						$("#chat_div").chatbox("option","boxManager")._scrollToBottom();
+					});
+				},1000);
 			});
 		</script>
 	</head>
@@ -36,15 +92,21 @@
 					<div class="rep">
 
 					</div>
-					<form name="addrepo_form" id="addrepo_form" action="modules/addRepo.php" method="post">
-						<input type="text" placeholder=" Repository Name" id="repoName" name="repoName" required="required" onblur="checkField('repoName')">
-						<input type="submit" value="ADD" class="submit_btn addrepo_btn">
-					</form>
+					<?php
+						if($_SESSION["type"]=="Admin") {
+					?>
+						<form name="addrepo_form" id="addrepo_form" action="modules/addRepo.php" method="post">
+							<input type="text" placeholder=" Repository Name" id="repoName" name="repoName" required="required" onblur="checkField('repoName')">
+							<input type="submit" value="ADD" class="submit_btn addrepo_btn">
+						</form>
+					<?php
+						}
+					?>
 				</div>
 			</div>
 			<div class="mainDivs comp">
 				<p class="title">files and folders</p>
-				<div class="components">
+				<div class="fileFolders">
 
 				</div>
 			</div>
@@ -53,12 +115,14 @@
 				<div class="log">
 
 				</div>
+				<?php
+					if($_SESSION["type"]=="Admin") {
+						echo "<a class='clear_log_btn'>Clear Logs</a>";
+					}
+				?>
 			</div>
-			<div id="chat-box">
-				<div class="chat"></div>
-				<div class="chat-link"><a><div id="chat_btn">Chat</div></a></div>
-			</div>
-			<a href="logout"><div id="logout_btn">LOGOUT(<?php echo $_SESSION["user"]; ?>)</div></a>
+			<a href="" class="logout"><div id="logout_btn">LOGOUT(<?php echo $_SESSION["user"]; ?>)</div></a>
+			<a class="show_deleted">Show deleted files</a>
 		</div>
 		<div class="wall">
 			<div id="upload_div">
@@ -71,11 +135,6 @@
 					<br><br>
 					<input type="submit" class="submit_btn upload_btn" value="COMMIT">
 				</form>
-				<br>
-				<div class="progress">
-					<div class="bar"></div>
-					<div class="percent">0%</div>
-				</div>
 				<a class="a_close_btn"><img src="images/close.png" width="30px" class="close_btn"></a>
 			</div>
 		</div>
@@ -121,6 +180,34 @@
 				<a class="a_close_btn"><img src="images/close.png" width="30px" class="close_btn"></a>
 			</div>
 		</div>
+		<div class="wall5">
+			<div id="del_div">
+				<form name="delete_form" action="modules/delete.php" id="delete_form" method="post">
+					<input type="hidden" name="del_version_id" id="del_version_id">
+					<textarea class="message" name="delete_message" id="delete_message" rows="4" cols="50" placeholder="insert comment here..." maxlength="256"></textarea>
+					<br><br>
+					<input type="submit" class="submit_btn delete_btn" value="DELETE">
+				</form>
+				<a class="a_close_btn"><img src="images/close.png" width="30px" class="close_btn"></a>
+			</div>
+		</div>
+		<div class="wall6">
+			<div id="show_del">
+				<div class="deleted_files">
+
+				</div>
+				<a class="vers_close_btn"><img src="images/close.png" width="30px" class="v_close_btn"></a>
+			</div>
+		</div>
+		<div class="wall-lock">
+			<div class="locking">
+				<img src="images/load.gif">
+			</div>
+		</div>
+		<div id="chat_div">
+
+		</div>
+		<input type="hidden" id="user" value=<?php echo $_SESSION["user"]; ?>>
 		<?php
 			$arr=query("SELECT * FROM repositories");
 		?>

@@ -1,52 +1,98 @@
 <?php
-//getLogs();
-$mes=getLogs();
-$len=sizeof($mes);
-for($i=0; $i<$len; $i++) {
-	echo "<div class='div_logs current'><p class='p_logs'>".$mes[$i]."</p></div>";
-}
 
-//echo "<pre>".htmlspecialchars(print_r($mes,true))."</pre>\r\n";	
-	function getLogs() {
-		log_connect();
-		$query = "SELECT * 
-			FROM  `logs` ,  `accounts` ,  `repositories`, `versions` 
-			WHERE log_repo_id = repo_id
-			AND log_acct_id = acct_id
-			AND log_vers_id = vers_id
-			ORDER BY log_date DESC";
-		$result=mysql_query($query) or die(mysql_error());
-		$arr = convert($result);
-		$s=sizeof($arr);
-		$logs=array();
-		for($i=0;$i<$s;$i++){
-			$name=$arr[$i]['acct_name'];
-			$act=$arr[$i]['log_action'];
-			$rname=$arr[$i]['repo_name'];
-			$path=getPath($arr[$i]['vers_id']);
-			$date=date("M\ d\, Y \(D\)-h\:i\:s a",strtotime($arr[$i]["vers_date"]));
-			if($act=="added repository")
-				$logs[$i]="$name $act '$rname' [$date]";
-			else
-				$logs[$i]="$name $act $path on repository '$rname' [$date]";
+/**
+ * @title
+ * MagicBox: A Simple Version Control System
+ *
+ * @description
+ * A Special Problem Presented to the Faculty of
+ * The Institute of Computer Science
+ * University of the Philippines Los Banos
+ *
+ * In Partial Fulfillment of the Requirements of the Degree of
+ * Bachelor of Science in Computer Science
+ *
+ * @authors
+ * Jasper A. Sibayan 
+ * 2009-46112
+ * and 
+ * Wilbert G. Verayin
+ * 2009-60315
+ * @date
+ * April 2013
+ */
+
+	session_start();
+	if(!isset($_POST["isCleared"]) || !isset($_SESSION["user"])) {
+		?>
+		<html>
+			<head>
+				<title>404 Not Found</title>
+			</head>
+			<body>
+				<h1>Not Found</h1>
+				<?php
+				echo "<p>The requested URL ".$_SERVER["REQUEST_URI"]." was not found on this server.</p>";
+				?>
+			</body>
+		</html>
+		<?php
+	}
+	else {
+		if($_POST["isCleared"]==0) {
+			$filename="logs.txt";
+			if(!file_exists($filename)) {
+				$fp = fopen($filename, 'w');
+				fclose($fp);
+			}
+			$fp = fopen($filename, 'r');
+			if(filesize($filename) > 0) {
+				$array = explode("\n", fread($fp, filesize($filename)));
+				$len=sizeof($array);
+				for($i=$len-1; $i>=0; $i--) {
+					if($array[$i]!="") {
+					$getparts=explode(" ",$array[$i]);		
+					$len2=sizeof($getparts);							
+						echo "<div class='div_logs current ";
+						if($getparts[1]=="committed") echo "logcommitted";
+						else if($getparts[1]=="deleted") echo "logdeleted";
+						else if($getparts[1]=="undeleted") echo "logundeleted";
+						else if($getparts[1]=="reverted") echo "logreverted";
+						else if($getparts[1]=="created") echo "logcreated";
+						else if($getparts[1]=="locked") echo "loglocked";
+						else if($getparts[1]=="unlocked") echo "logunlocked";
+						else if($getparts[1]=="failed") echo "logfailed";
+						echo"'><p class='p_logs'>".$getparts[0]." <span id='log".$getparts[1]."'><strong><em><u>".strtoupper($getparts[1])."</u></em></strong></span> ";
+						for ($j=2; $j<$len2 ; $j++) {
+							echo $getparts[$j]." ";
+						}
+						echo "</p></div>";
+					}
+				}
+			}
+			fclose($fp);
 		}
-		return $logs;
+		else {
+			$fp = fopen('logs.txt', 'w');
+			fwrite($fp,"");
+			fclose($fp);
+		}
 	}
 	
-	function getPath($vers_id){
+	function getPath($vers_id) {
 		log_connect();
 		$path="";
 		$parent=$vers_id;
-		do{
+		do {
 			$query="SELECT `vers_parent`, `vers_name`
-			FROM  `versions` 
+			FROM `versions` 
 			WHERE vers_id =$parent";
 			$result=mysql_query($query) or die(mysql_error());
-			$arr = convert($result);
+			$arr=convert($result);
 			$name=$arr[0]['vers_name'];
 			$parent=$arr[0]['vers_parent'];
 			$path="/$name$path";
-		}while($parent!=0);
+		} while($parent!=0);
 		return $path;
 	}
 	

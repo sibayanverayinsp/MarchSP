@@ -1,11 +1,11 @@
 function disableKeyCombination(e) {
 	var keyComb;
 	if(window.event) {
-		if(window.event.ctrlKey||window.event.shiftKey) keyComb=true;
+		if(window.event.ctrlKey||window.event.keyCode==123) keyComb=true;
 		else keyComb=false;
 	}
 	else {
-		if(e.ctrlKey||e.shiftKey) keyComb=true;
+		if(e.ctrlKey||e.keyCode==123) keyComb=true;
 		else keyComb=false;
 	}
 	if(keyComb)	return false;
